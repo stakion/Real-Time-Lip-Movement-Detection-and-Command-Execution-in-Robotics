@@ -56,15 +56,14 @@ The related work demonstrates advances in automatic speech recognition integrati
 
 
 ## Experimental Framework
-To capture video it is necessary to consider not having the
-following biases:
-    • Viewing angle to the camera.
-    • Separation distance from face to camera.
-    • Strong body movements.
-    • Strong movements of the face or head.
-    • Covering the lips, the media-pipe system makes the prediction but is not able to detect movement with covered lips.
-    • Environment with too much or too little light.
-    • Ram memory saturation affects the performance of the camera.
+To capture video it is necessary to consider not having the following biases:
+ * Viewing angle to the camera.
+ * Separation distance from face to camera.
+ * Strong body movements.
+ * Strong movements of the face or head.
+ * Covering the lips, the media-pipe system makes the prediction but is not able to detect movement with covered lips.
+ * Environment with too much or too little light.
+ * Ram memory saturation affects the performance of the camera.
 
 
 ## Latency & Bottlenecks
