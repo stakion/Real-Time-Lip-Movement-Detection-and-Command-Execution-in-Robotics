@@ -7,25 +7,23 @@ The main purpose of the project focuses on leveraging modern technology to enabl
 To design, implement, and evaluate a multimodal human–robot interaction system that integrates computer vision, automatic speech recognition, and large language models to interpret natural language commands and execute real-time drone control within a simulated robotic environment.
 
 ### Specific:
-1. To implement a facial landmark-based algorithm that detects lip movement in real time by analyzing the mean difference between upper and lower lip coordinates to trigger speech recording.
-2. To incorporate OpenAI Whisper for converting recorded audio signals into structured textual representations suitable for natural language processing.
-3. To implement a classification framework using LangChain and locally deployed LLMs (LLaMA via Ollama) that:
+1. To implement a facial landmark-based algorithm that detects lip movement in real time by analyzing the mean difference between upper and lower lip coordinates to trigger speech recording. <br>
+2. To incorporate OpenAI Whisper for converting recorded audio signals into structured textual representations suitable for natural language processing. <br>
+3. To implement a classification framework using LangChain and locally deployed LLMs (LLaMA via Ollama) that: 
 
   Identifies the user’s command intent (movement, landing, stop, etc.)
   Determines the directional axis of motion (X/Y/Z ±)
 
-4. To deploy large language models locally and evaluate their performance (LLaMA 2 vs LLaMA 3) in terms of inference latency and classification effectiveness under hardware constraints.
-5. To design and tune a PID controller capable of executing movement commands in a Gazebo-based drone simulation environment.
-6. To evaluate multithreading, multiprocessing, and concurrent futures approaches in order to mitigate latency introduced by speech transcription and LLM inference.
-7. To analyze hardware bottlenecks, ASR latency, LLM response time, and environmental biases (lighting, occlusion, noise) affecting real-time multimodal interaction.
+4. To deploy large language models locally and evaluate their performance (LLaMA 2 vs LLaMA 3) in terms of inference latency and classification effectiveness under hardware constraints. <br>
+5. To design and tune a PID controller capable of executing movement commands in a Gazebo-based drone simulation environment. <br>
+6. To evaluate multithreading, multiprocessing, and concurrent futures approaches in order to mitigate latency introduced by speech transcription and LLM inference. <br>
+7. To analyze hardware bottlenecks, ASR latency, LLM response time, and environmental biases (lighting, occlusion, noise) affecting real-time multimodal interaction. <br>
 
 
 ## Research Questions
-1. How feasible and effective is the integration of computer vision-based lip movement detection, automatic speech recognition (Whisper), and locally deployed large language models for real-time human–robot interaction?
-
-2. What are the primary computational and architectural bottlenecks that affect real-time execution when deploying Whisper and LLaMA models locally in a robotics control loop?
-
-3. To what extent can large language models (via LangChain and Ollama) reliably classify and interpret natural language commands for structured robotic control tasks in simulated environments?
+1. How feasible and effective is the integration of computer vision-based lip movement detection, automatic speech recognition (Whisper), and locally deployed large language models for real-time human–robot interaction? <br>
+2. What are the primary computational and architectural bottlenecks that affect real-time execution when deploying Whisper and LLaMA models locally in a robotics control loop? <br>
+3. To what extent can large language models (via LangChain and Ollama) reliably classify and interpret natural language commands for structured robotic control tasks in simulated environments? <br>
 
 
 ## Related Work
