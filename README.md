@@ -9,10 +9,9 @@ To design, implement, and evaluate a multimodal human–robot interaction system
 ### Specific:
 1. To implement a facial landmark-based algorithm that detects lip movement in real time by analyzing the mean difference between upper and lower lip coordinates to trigger speech recording. <br>
 2. To incorporate OpenAI Whisper for converting recorded audio signals into structured textual representations suitable for natural language processing. <br>
-3. To implement a classification framework using LangChain and locally deployed LLMs (LLaMA via Ollama) that: 
-
-  Identifies the user’s command intent (movement, landing, stop, etc.)
-  Determines the directional axis of motion (X/Y/Z ±)
+3. To implement a classification framework using LangChain and locally deployed LLMs (LLaMA via Ollama) that:  <br>
+    - Identifies the user’s command intent (movement, landing, stop, etc.) <br>
+    - Determines the directional axis of motion (X/Y/Z ±) <br>
 
 4. To deploy large language models locally and evaluate their performance (LLaMA 2 vs LLaMA 3) in terms of inference latency and classification effectiveness under hardware constraints. <br>
 5. To design and tune a PID controller capable of executing movement commands in a Gazebo-based drone simulation environment. <br>
