@@ -69,7 +69,7 @@ To capture video it is necessary to consider not having the following biases:
 ## Latency & Bottlenecks
 This project targets a real-time interaction loop (Webcam → Lip trigger → ASR → LLM → Drone action). During experimentation, the main limitation was latency, caused by CPU-intensive stages competing for resources and by Python runtime constraints.
 
-### Whisper (ASR) blocks the video loop (OpenCV freeze/lag)
+### 1) Whisper (ASR) blocks the video loop (OpenCV freeze/lag)
 #### What happens: 
 When Whisper is triggered, the OpenCV stream experiences a visible interruption (frame freeze/lag) until transcription completes.  <br>
 
@@ -81,6 +81,43 @@ When Whisper is triggered, the OpenCV stream experiences a visible interruption 
 #### Observed impact:
 Typical transcription time: ~40–70 seconds per activation (hardware/load dependent).
 In practice, ~1 minute average to produce the final text locally.  <br>
+
+### 2) Concurrency helps responsiveness, but doesn’t make Whisper real-time
+#### What was tested: 
+Multithreading, multiprocessing, and concurrent.futures.
+
+### Why results are limited:
+ * Multithreading: limited benefit for CPU-bound workloads in Python due to the GIL.
+ * Multiprocessing: introduces overhead (process spawn, IPC, memory duplication), which can reduce the net gain.
+ * concurrent.futures: offers the cleanest control over asynchronous tasks and improved loop responsiveness, but cannot reduce Whisper’s raw inference time.
+ * Key takeaway: Even with the best concurrency approach, the system cannot exceed the limits imposed by local ASR compute cost.
+
+### 3) Audio encoding/decoding & pipeline choices add extra overhead
+#### What happens: The choice of audio format/codec and file handling affects how fast audio becomes “ready” for transcription.
+
+#### Why it happens:
+ * Some formats require additional decoding steps.
+ * File I/O and conversion introduce extra latency before Whisper inference even begins.
+ * Longer audio segments increase total inference time proportionally.
+
+### 4) Local LLM inference (LLaMA via Ollama) increases response time vs cloud
+#### What happens: 
+LLaMA 2/3 classification takes noticeably longer than cloud-based models.
+
+#### Why it happens:
+ * The model runs locally (Ollama), so inference is limited by the host machine’s CPU/RAM (and GPU if not enabled).
+ * Larger models and longer context windows increase computation.
+ * The local setup trades speed for offline execution and privacy.
+
+
+### 5) Resource contention across the whole multimodal loop
+#### What happens: 
+Even when each module works independently, the full pipeline suffers from competition for the same compute resources.
+
+#### Why it happens:
+ * OpenCV frame capture + MediaPipe landmark extraction require steady CPU cycles.
+ * Whisper and LLM inference can saturate CPU/RAM and reduce the frame rate.
+ * Memory pressure (RAM saturation) can cause stutter, swapping, or inconsistent timing.
 
 
 
